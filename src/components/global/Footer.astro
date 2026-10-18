@@ -1,0 +1,303 @@
+---
+import Icon from "@/components/media/Icon.astro";
+import GradientBackground from "@/components/media/GradientBackground.astro";
+import logo from "@/assets/logo/logo.svg";
+import { SITE_NAME, DISCORD_URL } from "@/consts.ts";
+
+interface Props {
+  /** Set to `false` to omit the component. */
+  render?: boolean;
+}
+
+const { render = true } = Astro.props;
+
+const groups = [
+  {
+    title: "Product",
+    links: [
+      { label: "What it does", href: "/#features" },
+      { label: "Make it yours", href: "/#customize" },
+      { label: "Request early access", href: DISCORD_URL },
+    ],
+  },
+  {
+    title: "Legal",
+    links: [
+      { label: "Privacy Policy", href: "/privacy" },
+      { label: "Terms of Use", href: "/terms" },
+    ],
+  },
+  {
+    title: "Help",
+    links: [
+      {
+        label: "Contact",
+        href: "https://github.com/nisium/livebridge-site/issues",
+      },
+    ],
+  },
+];
+---
+
+{
+  render && (
+    <footer class="footer_wrap">
+      <GradientBackground grain={30} speed={40} />
+      <div class="footer_inner">
+        <div class="footer_top">
+          <div class="footer_brand">
+            <a class="footer_logo" href="/" aria-label={SITE_NAME}>
+              <Icon src={logo} variant="full-width" />
+            </a>
+            <p class="footer_tagline text-style-small">
+              One private timeline of chat, events and gifts for TikTok LIVE and
+              YouTube Live, inside OBS Studio.
+            </p>
+            <a
+              class="footer_badge text-style-small"
+              href="https://www.youtube.com/@g.dionisie"
+              target="_blank"
+              rel="noopener"
+            >
+              A product by <strong>NoLife Gaming</strong>
+            </a>
+          </div>
+          <nav class="footer_nav" aria-label="Footer">
+            {groups.map((group) => (
+              <div class="footer_group">
+                <p class="footer_heading text-style-small">{group.title}</p>
+                <ul class="footer_links">
+                  {group.links.map((link) => (
+                    <li>
+                      <a class="footer_link" href={link.href}>
+                        {link.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </nav>
+        </div>
+        <div class="footer_bottom">
+          <div class="footer_meta">
+            <p class="footer_copyright text-style-small">
+              &copy; <span id="year">{new Date().getFullYear()}</span>&#160;
+              {SITE_NAME}. All rights reserved.
+            </p>
+            <p class="footer_note text-style-small">
+              OBS Studio plugin for Windows.
+            </p>
+          </div>
+          <p class="footer_legal text-style-xsmall margin-top-4 margin-bottom-4">
+            LiveBridge is an independent product. It is not affiliated with,
+            endorsed by or sponsored by TikTok, YouTube, Google or OBS Studio.
+            All product names, logos and brands are the property of their
+            respective owners.
+          </p>
+        </div>
+      </div>
+    </footer>
+  )
+}
+
+<script>
+  const year = document.querySelector<HTMLSpanElement>("#year");
+
+  if (year) {
+    year.textContent = new Date().getFullYear().toString();
+  }
+</script>
+
+<style is:global>
+  @layer components {
+    .footer_wrap {
+      position: relative;
+      isolation: isolate;
+      display: flex;
+      justify-content: center;
+      overflow: hidden;
+      padding-block: var(--section-space-medium) var(--space-6);
+      padding-inline: var(--site-margin);
+      background-color: var(--background);
+      color: var(--text);
+
+      /* a thin glowing line on top */
+      &::before {
+        content: "";
+        position: absolute;
+        inset-inline: 0;
+        top: 0;
+        z-index: 1;
+        height: var(--border-width);
+        background-image: linear-gradient(
+          to right,
+          transparent,
+          color-mix(in srgb, var(--brand-500) 70%, white),
+          transparent
+        );
+        opacity: 0.7;
+      }
+    }
+
+    .footer_inner {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: var(--max-width-main);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-8);
+    }
+
+    .footer_top {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-7);
+    }
+
+    .footer_brand {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-4);
+      max-width: 24rem;
+    }
+
+    .footer_logo {
+      display: block;
+      width: 9rem;
+      max-width: 100%;
+      transition: opacity var(--hover-duration) var(--hover-ease);
+      @media (hover: hover) {
+        &:hover {
+          opacity: 0.6;
+        }
+      }
+    }
+
+    .footer_tagline {
+      color: var(--text-2);
+    }
+
+    /* Placeholder for the NoLife Gaming badge */
+    .footer_badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5em;
+      padding: var(--space-3) var(--space-4);
+      background-color: color-mix(in srgb, var(--brand-500) 12%, transparent);
+      border: var(--border-width) solid
+        color-mix(in srgb, var(--brand-500) 45%, transparent);
+      border-radius: var(--radius-small);
+      backdrop-filter: blur(0.5rem);
+      color: inherit;
+      text-decoration: none;
+      transition:
+        background-color var(--hover-duration) var(--hover-ease),
+        border-color var(--hover-duration) var(--hover-ease);
+      @media (hover: hover) {
+        &:hover {
+          background-color: color-mix(
+            in srgb,
+            var(--brand-500) 22%,
+            transparent
+          );
+          border-color: color-mix(in srgb, var(--brand-500) 75%, transparent);
+        }
+      }
+
+      & strong {
+        font-weight: var(--primary-bold);
+        color: color-mix(in srgb, var(--brand-500) 55%, white);
+      }
+    }
+
+    .footer_nav {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-6) var(--space-5);
+    }
+
+    .footer_group {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+    }
+
+    .footer_heading {
+      font-weight: var(--primary-bold);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .footer_links {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+      font-size: var(--text-small);
+    }
+
+    .footer_link {
+      color: var(--text-2);
+      text-decoration: none;
+      transition: color var(--hover-duration) var(--hover-ease);
+      @media (hover: hover) {
+        &:hover {
+          color: var(--text);
+        }
+      }
+    }
+
+    .footer_bottom {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+      padding-top: var(--space-5);
+      border-top: var(--border-width) solid transparent;
+      border-image: linear-gradient(
+          to right,
+          transparent,
+          color-mix(in srgb, var(--brand-500) 60%, transparent),
+          transparent
+        )
+        1;
+    }
+
+    .footer_meta {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2) var(--space-5);
+    }
+
+    .footer_copyright,
+    .footer_note,
+    .footer_legal {
+      color: var(--text-2);
+    }
+
+    .footer_legal {
+      opacity: 0.8;
+      max-width: 60cqh;
+    }
+
+    @media (width >= 48rem) {
+      .footer_top {
+        flex-direction: row;
+        justify-content: space-between;
+        gap: var(--space-8);
+      }
+
+      .footer_nav {
+        grid-template-columns: repeat(3, minmax(9rem, auto));
+        gap: var(--space-8);
+      }
+
+      .footer_meta {
+        flex-direction: row;
+        align-items: baseline;
+        justify-content: space-between;
+      }
+    }
+  }
+</style>

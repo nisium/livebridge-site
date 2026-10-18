@@ -1,0 +1,52 @@
+---
+interface Props {
+  /** Set to `false` to omit the component. */
+  render?: boolean;
+}
+
+const { render = true } = Astro.props;
+---
+
+{render && <div hidden data-smooth-scroll />}
+
+<script>
+  import Lenis from "lenis";
+
+  if (
+    document.querySelector("[data-smooth-scroll]") &&
+    !window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  ) {
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t: number) => 1 - Math.pow(1 - t, 4),
+      anchors: { offset: -16 },
+    });
+
+    const frame = (time: number) => {
+      lenis.raf(time);
+      requestAnimationFrame(frame);
+    };
+    requestAnimationFrame(frame);
+  }
+</script>
+
+<style is:global>
+  @layer base {
+    html.lenis,
+    html.lenis body {
+      height: auto;
+    }
+
+    .lenis:not(.lenis-autoToggle).lenis-stopped {
+      overflow: clip;
+    }
+
+    .lenis [data-lenis-prevent] {
+      overscroll-behavior: contain;
+    }
+
+    .lenis.lenis-smooth iframe {
+      pointer-events: none;
+    }
+  }
+</style>

@@ -1,0 +1,138 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"div"> {
+  /** Set to `false` to omit the component. */
+  render?: boolean;
+  /**
+   * Grain strength as a percentage.
+   *
+   * @min 0
+   * @max 100
+   * @int
+   */
+  grain?: number;
+  /**
+   * Seconds for one slow drift of the light. Higher is calmer.
+   *
+   * @min 8
+   * @int
+   */
+  speed?: number;
+}
+
+const {
+  render = true,
+  grain = 40,
+  speed = 28,
+  class: className,
+  ...rest
+} = Astro.props;
+---
+
+{
+  render && (
+    <div
+      class:list={["gradient_wrap", className]}
+      style={`--_grain: ${grain}; --_speed: ${speed}s;`}
+      aria-hidden="true"
+      {...rest}
+    >
+      <div class="gradient_light">
+        <span class="gradient_blob gradient_blob_1" />
+        <span class="gradient_blob gradient_blob_2" />
+        <span class="gradient_blob gradient_blob_3" />
+      </div>
+      <span class="gradient_grain" />
+    </div>
+  )
+}
+
+<style is:global>
+  @layer components {
+    .gradient_wrap {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background-color: var(--background);
+      pointer-events: none;
+    }
+
+    .gradient_light {
+      position: absolute;
+      inset: 0;
+      filter: blur(3.5rem);
+    }
+
+    .gradient_blob {
+      position: absolute;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      will-change: transform;
+      animation: gradient-drift var(--_speed) ease-in-out infinite alternate;
+    }
+
+    .gradient_blob_1 {
+      inline-size: 110%;
+      inset-inline-start: 20%;
+      inset-block-start: 42%;
+      background: radial-gradient(
+        closest-side,
+        color-mix(in srgb, var(--brand-500) 95%, white 8%),
+        color-mix(in srgb, var(--brand-500) 55%, transparent) 55%,
+        transparent
+      );
+    }
+
+    .gradient_blob_2 {
+      inline-size: 80%;
+      inset-inline-start: -15%;
+      inset-block-start: 50%;
+      background: radial-gradient(
+        closest-side,
+        color-mix(in srgb, var(--brand-500) 60%, black),
+        transparent
+      );
+      animation-duration: calc(var(--_speed) * 1.35);
+      animation-direction: alternate-reverse;
+    }
+
+    .gradient_blob_3 {
+      inline-size: 65%;
+      inset-inline-start: 50%;
+      inset-block-start: -20%;
+      background: radial-gradient(
+        closest-side,
+        color-mix(in srgb, var(--brand-500) 45%, transparent),
+        transparent
+      );
+      animation-duration: calc(var(--_speed) * 0.8);
+    }
+
+    .gradient_grain {
+      position: absolute;
+      inset: 0;
+      opacity: calc(var(--_grain) / 100);
+      mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1.4 -.2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    @keyframes gradient-drift {
+      from {
+        transform: translate(-6%, 4%) scale(1);
+      }
+      50% {
+        transform: translate(5%, -6%) scale(1.12);
+      }
+      to {
+        transform: translate(8%, 5%) scale(0.94);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .gradient_blob {
+        animation: none;
+      }
+    }
+  }
+</style>

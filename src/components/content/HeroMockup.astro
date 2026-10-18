@@ -1,0 +1,86 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+interface Props {
+  /** Set to `false` to omit the component. */
+  render?: boolean;
+  /** Imported image. */
+  src: ImageMetadata;
+  /** Alt text. */
+  alt: string;
+}
+
+const { render = true, src, alt } = Astro.props;
+---
+
+{
+  render && (
+    <div class="hero-mockup_wrap pointer-off">
+      <div class="hero-mockup_frame">
+        <Image
+          class="hero-mockup_image"
+          src={src}
+          alt={alt}
+          widths={[640, 1080, 1668, 2048]}
+          sizes="(width < 48rem) 220vw, 90rem"
+          loading="eager"
+          fetchpriority="high"
+        />
+      </div>
+      <span class="hero-mockup_fade" />
+    </div>
+  )
+}
+
+<style is:global>
+  @layer components {
+    .hero-mockup_wrap {
+      position: relative;
+      width: 100%;
+      margin-top: -5rem;
+    }
+
+    .hero-mockup_frame {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      overflow: hidden;
+      cursor: none;
+    }
+
+    /* The bottom of the picture melts into the page color, full width of the screen */
+    .hero-mockup_fade {
+      position: absolute;
+      inset-inline: calc(50% - 50vw);
+      bottom: 0;
+      height: 65%;
+      background-image: linear-gradient(
+        to bottom,
+        transparent,
+        var(--dark-900) 100%
+      );
+      pointer-events: none;
+    }
+
+    .hero-mockup_image {
+      display: block;
+      flex: none;
+      width: 100%;
+      height: auto;
+    }
+
+    /* On a phone the picture is shown larger than the screen, centered on the main dock */
+    @media (width < 48rem) {
+      .hero-mockup_wrap {
+        width: calc(100% + var(--site-margin) * 2);
+        margin-inline: calc(var(--site-margin) * -1);
+      }
+
+      .hero-mockup_image {
+        width: 220%;
+        max-width: none;
+      }
+    }
+  }
+</style>

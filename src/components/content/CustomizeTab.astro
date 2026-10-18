@@ -1,0 +1,112 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import Heading from "@/components/typography/Heading.astro";
+import Paragraph from "@/components/typography/Paragraph.astro";
+import Icon from "@/components/media/Icon.astro";
+import check from "@/assets/icons/ph-check-circle-fill.svg";
+
+interface Props {
+  /** Set to `false` to omit the component. */
+  render?: boolean;
+  /** Title of the tab. */
+  heading: string;
+  /** Short explanation under the title. */
+  text: string;
+  /** Short points shown as a checked list. */
+  points: string[];
+  /** Imported picture shown beside the text. */
+  image: ImageMetadata;
+  /** Alt text of the picture. */
+  alt: string;
+}
+
+const { render = true, heading, text, points, image, alt } = Astro.props;
+---
+
+{
+  render && (
+    <div class="customize-tab_wrap">
+      <div class="customize-tab_copy">
+        <Heading tag="h3" variant="h3" maxWidth={14}>
+          {heading}
+        </Heading>
+        <Paragraph maxWidth={34}>{text}</Paragraph>
+        <ul class="customize-tab_list">
+          {points.map((point) => (
+            <li class="customize-tab_item text-style-small">
+              <Icon class="customize-tab_check" src={check} variant="small" />
+              <span>{point}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div class="customize-tab_visual">
+        <Image
+          class="customize-tab_image"
+          src={image}
+          alt={alt}
+          widths={[640, 1080, 1200]}
+          sizes="(width < 48rem) 100vw, 45rem"
+        />
+      </div>
+    </div>
+  )
+}
+
+<style is:global>
+  @layer components {
+    .customize-tab_wrap {
+      display: grid;
+      gap: var(--space-6);
+      align-items: center;
+      align-content: center;
+      width: 100%;
+      padding-block: var(--space-6);
+    }
+
+    .customize-tab_copy {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+    }
+
+    .customize-tab_list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+      margin-top: var(--space-2);
+    }
+
+    .customize-tab_item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75em;
+    }
+
+    .customize-tab_check {
+      /* centered on the first line of the text, whatever its size and line height */
+      margin-top: calc((1lh - 1em) / 2);
+      color: color-mix(in srgb, var(--brand-500) 55%, white);
+    }
+
+    .customize-tab_visual {
+      overflow: hidden;
+      border-radius: var(--radius-main);
+      border: var(--border-width) solid var(--border);
+    }
+
+    .customize-tab_image {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    @media (width >= 48rem) {
+      .customize-tab_wrap {
+        grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+        gap: var(--space-8);
+      }
+    }
+  }
+</style>

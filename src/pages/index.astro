@@ -1,93 +1,304 @@
 ---
-import Base from "../layouts/Base.astro";
-import { Image } from "astro:assets";
-import dock from "../assets/dock.png";
-import gifts from "../assets/gifts.png";
-import events from "../assets/events.png";
-import display from "../assets/display.png";
-import counters from "../assets/counters.png";
-const base = import.meta.env.BASE_URL;
+import Layout from "@/layouts/BaseLayout.astro";
+import Section from "@/components/wrapper/Section.astro";
+import GradientBackground from "@/components/media/GradientBackground.astro";
+import ContentWrapper from "@/components/wrapper/ContentWrapper.astro";
+import Heading from "@/components/typography/Heading.astro";
+import Paragraph from "@/components/typography/Paragraph.astro";
+import ButtonWrapper from "@/components/wrapper/ButtonWrapper.astro";
+import Button from "@/components/Button.astro";
+import { DISCORD_URL } from "@/consts.ts";
+import HeroMockup from "@/components/content/HeroMockup.astro";
+import ph_chats from "@/assets/icons/ph-chats-fill.svg";
+import ph_gift from "@/assets/icons/ph-gift-fill.svg";
+import ph_chart_bar from "@/assets/icons/ph-chart-bar-fill.svg";
+import ph_users from "@/assets/icons/ph-users-fill.svg";
+import ph_pulse from "@/assets/icons/ph-pulse-fill.svg";
+import ph_layout from "@/assets/icons/ph-layout-fill.svg";
+import hero_mockup from "@/assets/graphics/hero-mockup.png";
+import Eyebrow from "@/components/typography/Eyebrow.astro";
+import Grid from "@/components/wrapper/Grid.astro";
+import Card from "@/components/item/Card.astro";
+import Marquee from "@/components/interactive/Marquee.astro";
+import Icon from "@/components/media/Icon.astro";
+import tiktok from "@/assets/icons/tiktok.svg";
+import youtube from "@/assets/icons/youtube.svg";
+import twitch from "@/assets/icons/twitch.svg";
+import kick from "@/assets/icons/kick.svg";
+import CustomizeTab from "@/components/content/CustomizeTab.astro";
+import Tabs from "@/components/interactive/Tabs.astro";
+import TabLink from "@/components/interactive/TabLink.astro";
+import customize_display from "@/assets/graphics/customize-display.png";
+import customize_counters from "@/assets/graphics/customize-counters.png";
+import customize_accounts from "@/assets/graphics/customize-accounts.png";
+import customize_docks from "@/assets/graphics/customize-docks.png";
+import discord2 from "@/assets/icons/discord.svg";
+import ph_desktop from "@/assets/icons/ph-desktop-fill.svg";
+import ph_cloud_slash from "@/assets/icons/ph-cloud-slash-fill.svg";
+import ph_eye from "@/assets/icons/ph-eye-fill.svg";
+import Accordion from "@/components/interactive/Accordion.astro";
+import AccordionItem from "@/components/interactive/AccordionItem.astro";
+import latest from "@/data/latest.json";
 ---
-<Base title="LiveBridge for OBS Studio" description="One private timeline of chat, events and gifts for TikTok LIVE and YouTube Live, as docks inside OBS Studio.">
 
-<header class="hero"><div class="wrap">
-<span class="pill"><i></i> Early access · Windows installer for OBS Studio</span>
-<h1>Your whole live, in <em>one timeline</em>.</h1>
-<p class="lead">Chat, gifts, follows, Super Chats and live counters from TikTok LIVE and YouTube Live, side by side, as docks inside OBS Studio. Private by design: nothing leaves your computer.</p>
-<div class="cta"><a class="btn primary" href="#features">See what it does</a><a class="btn ghost" href={base+"privacy/"}>How your data is handled</a></div>
-<div class="platforms"><img src={base+"brand/tiktok.svg"} alt=""><img src={base+"brand/youtube.svg"} alt=""><span>TikTok LIVE and YouTube Live today · Twitch and Kick later</span></div>
-<div class="shots">
-<div class="frame"><Image src={gifts} alt="Gifts dock with real TikTok gift pictures" widths={[480,720,900]} sizes="(max-width: 860px) 100vw, 480px" /></div>
-<div class="frame big"><Image src={dock} alt="The LiveBridge dock in OBS Studio" widths={[480,720,900]} sizes="(max-width: 860px) 100vw, 480px" /></div>
-<div class="frame"><Image src={events} alt="Events dock" widths={[480,720,900]} sizes="(max-width: 860px) 100vw, 480px" /></div>
-</div>
-<p class="cap">Screenshots use demo data (a test run of the app). Gift and sticker pictures are the real ones from TikTok.</p>
-</div></header>
-
-<section id="features"><div class="wrap">
-<span class="kicker">What it does</span>
-<h2>Everything a streamer needs to see, in one place.</h2>
-<p class="sub">Stop jumping between the TikTok app, YouTube Studio and three browser tabs.</p>
-<div class="grid">
-<div class="card"><div class="ico">💬</div><h3>One private timeline</h3><p>Chat from every connected platform in a single list, with badges, emotes and stickers as viewers see them.</p></div>
-<div class="card"><div class="ico">🎁</div><h3>Real gifts</h3><p>Gifts show their own picture, name and count. Small gifts and big ones (500+ diamonds) have their own look. Super Chats and new members too.</p></div>
-<div class="card"><div class="ico">📊</div><h3>Live counters</h3><p>Viewers, likes, new followers, diamonds, Super Chats and members, grouped by platform and updated as they change.</p></div>
-<div class="card"><div class="ico">👋</div><h3>Follows, shares, bans</h3><p>New followers and subscribers, shares, and YouTube bans and timeouts, as quiet little events in the chat.</p></div>
-<div class="card"><div class="ico">⚡</div><h3>Activity line</h3><p>Under the chat, one line shows who just joined, followed, shared or liked, rotating calmly one at a time.</p></div>
-<div class="card"><div class="ico">🧩</div><h3>Docks that fit your layout</h3><p>Use the main dock alone, or add separate Gifts and Events docks and place them anywhere in OBS.</p></div>
-</div></div></section>
-
-<section class="alt" id="custom"><div class="wrap">
-<span class="kicker">Customize</span>
-<h2>Show what you want. Hide what you don't.</h2>
-<p class="sub">Every part of the chat can be turned on or off from a clear Settings screen. Nothing is taken away unless you say so.</p>
-<div class="split">
-<div><div class="frame"><Image src={display} alt="Display settings" widths={[480,720,900]} sizes="(max-width: 860px) 100vw, 480px" /></div></div>
-<div><h3 style="font-size:24px">Display, in three simple blocks</h3>
-<ul>
-<li><b>Main Chat.</b> Choose between chat messages, gifts and support, and follows, shares and bans.</li>
-<li><b>Above the Main Chat.</b> An optional events area like TikTok's own: show all events, only follows and shares, or only gifts and members. Drag the bar to make it bigger.</li>
-<li><b>Under the Chat.</b> The activity line, on or off.</li>
-<li><b>Test the whole chat.</b> One button runs a short demo for the platforms you connected, so you can check your layout before going live.</li>
-</ul></div></div>
-<div class="split rev" style="margin-top:56px">
-<div><h3 style="font-size:24px">Counters, platform by platform</h3>
-<ul>
-<li><b>Hide a whole platform</b> or pick the exact numbers you want.</li>
-<li><b>Each number belongs to a platform</b>, so you never wonder where it comes from.</li>
-<li><b>Only connected platforms</b> appear at the top and bottom of the dock.</li>
-</ul></div>
-<div><div class="frame"><Image src={counters} alt="Counter settings" widths={[480,720,900]} sizes="(max-width: 860px) 100vw, 480px" /></div></div></div>
-</div></section>
-
-<section><div class="wrap">
-<span class="kicker">Connecting</span>
-<h2>No passwords. No servers. Two minutes.</h2>
-<div class="two" style="margin-top:28px">
-<div class="card"><h3><img src={base+"brand/tiktok.svg"} alt="" width="18" height="18" style="vertical-align:-3px;border-radius:4px"> TikTok</h3><p>Type your username and press Connect. LiveBridge reads the same public data a viewer of your live sees. No TikTok password is ever asked.</p></div>
-<div class="card"><h3><img src={base+"brand/youtube.svg"} alt="" width="18" height="18" style="vertical-align:-3px;border-radius:4px"> YouTube</h3><p>Sign in with Google in your browser. Only one permission is requested: read-only access to your YouTube account, to read your own live chat and counters. You can disconnect, and revoke it at Google, from Settings.</p></div>
-</div></div></section>
-
-<section class="alt"><div class="wrap">
-<span class="kicker">Privacy</span>
-<h2>Runs on your computer. Period.</h2>
-<p class="sub">There is no LiveBridge server, no account and no analytics.</p>
-<div class="priv">
-<div class="card"><div class="big">127.0.0.1</div><p>The helper service listens only on your own computer. Nobody on your network can reach it.</p></div>
-<div class="card"><div class="big">0</div><p>Accounts, servers, trackers or ads. We never receive your chat, your tokens or your data.</p></div>
-<div class="card"><div class="big">Read-only</div><p>On YouTube the app can only read. It never posts, deletes or changes anything.</p></div>
-</div>
-<p style="margin-top:22px"><a href={base+"privacy/"}>Read the full Privacy Policy →</a></p>
-</div></section>
-
-<section><div class="narrow faq">
-<span class="kicker">Questions</span>
-<h2>FAQ</h2>
-<details><summary>Which platforms are supported?</summary><p>TikTok LIVE and YouTube Live. Twitch and Kick are planned but not available yet.</p></details>
-<details><summary>Which systems?</summary><p>The installer is for Windows and OBS Studio. It finds your OBS folder and lets you confirm or change it before installing anything.</p></details>
-<details><summary>Windows says the app is unknown. Is it safe?</summary><p>The installer is not code-signed yet, so Windows SmartScreen may warn you. Choose "More info" then "Run anyway". The plugin only runs inside OBS and talks only to TikTok and Google.</p></details>
-<details><summary>Does it send my chat anywhere?</summary><p>No. Everything stays on your computer. See the <a href={base+"privacy/"}>Privacy Policy</a>.</p></details>
-<details><summary>Can it moderate my chat?</summary><p>Not yet. It shows what happens (for example YouTube bans and timeouts) but it does not act on your behalf.</p></details>
-<details><summary>Why does TikTok show fewer details than the TikTok app?</summary><p>TikTok does not offer an official live API. LiveBridge reads the public data of your live, so some app-only items (for example some emoji codes) can look different.</p></details>
-</div></section>
-</Base>
+<Layout theme="dark" overlap={true}>
+  <Section
+    paddingBottom="none"
+    containerClass="flex-grow"
+    paddingTop="navoverlap"
+    class="flex-grow"
+    fullHeight={true}
+    gap="0"
+  >
+    <GradientBackground slot="background" />
+    <ContentWrapper centered={true} class="flex-grow">
+      <Heading tag="h1" variant="display" class="heading-accent" maxWidth={12}
+        >Every live chat, <strong>in one dock</strong>.</Heading
+      >
+      <Paragraph maxWidth={40}
+        >TikTok and YouTube chat, gifts and counters inside OBS Studio. Private,
+        on your computer.</Paragraph
+      >
+      <ButtonWrapper>
+        <Button element="link" href={DISCORD_URL} icon={discord2}
+          >Request early access<Icon /></Button
+        >
+        <Button element="link" href="#features" emphasis="secondary"
+          >See what it does</Button
+        >
+      </ButtonWrapper>
+      <Paragraph
+        variant="xsmall"
+        class="color-faded"
+        render={Boolean(latest.version)}
+        >{
+          `LiveBridge v${latest.version}${latest.sizeMb ? ` · ${latest.sizeMb} MB` : ""} · Installer not signed`
+        }</Paragraph
+      >
+    </ContentWrapper>
+    <HeroMockup
+      src={hero_mockup}
+      alt="LiveBridge in OBS Studio: the Gifts dock, the main dock with counters and chat, and the Events dock"
+    />
+  </Section>
+  <Section paddingTop="none" paddingBottom="none"
+    ><Marquee label="Supported platforms">
+      <Paragraph variant="large">TikTok</Paragraph>
+      <Icon src={tiktok} variant="large" />
+      <Paragraph variant="large">YouTube</Paragraph>
+      <Icon src={youtube} variant="large" />
+      <Paragraph variant="large">Twitch</Paragraph>
+      <Icon src={twitch} variant="large" />
+      <Paragraph variant="large">Kick</Paragraph>
+      <Icon src={kick} variant="large" />
+    </Marquee></Section
+  >
+  <Section id="features"
+    ><ContentWrapper centered={true}>
+      <Eyebrow>BUILT BY STREAMERS, FOR STREAMERS</Eyebrow>
+      <Heading maxWidth={10}>All your chats. One place.</Heading>
+      <Paragraph>Less switching. More streaming.</Paragraph>
+    </ContentWrapper><Grid small={2} medium={3} class="gap-2">
+      <Card
+        icon={ph_chats}
+        heading="One unified chat"
+        text="Every platform. One chat."
+      />
+      <Card
+        icon={ph_gift}
+        heading="Real-time gifts"
+        text="Every gift, every detail."
+      />
+      <Card
+        icon={ph_chart_bar}
+        heading="Live stats"
+        text="Your numbers, at a glance."
+      />
+      <Card
+        icon={ph_users}
+        heading="Community activity"
+        text="Follows, shares and more."
+      />
+      <Card
+        icon={ph_pulse}
+        heading="Live activity feed"
+        text="Never miss a moment."
+      />
+      <Card
+        icon={ph_layout}
+        heading="Your OBS, your way"
+        text="One dock or multiple panels."
+      />
+    </Grid></Section
+  >
+  <Section id="customize" paddingTop="none">
+    <ContentWrapper centered={true}>
+      <Eyebrow>MAKE IT YOURS</Eyebrow>
+      <Heading maxWidth={22}>Show what you want. Hide what you don't.</Heading>
+      <Paragraph maxWidth={46}
+        >Every part of the chat can be turned on or off from a clear Settings
+        screen. Nothing is taken away unless you say so.</Paragraph
+      >
+    </ContentWrapper>
+    <Tabs id="settings" playback="auto">
+      <Fragment slot="links">
+        <TabLink>Display</TabLink>
+        <TabLink>Counters</TabLink>
+        <TabLink>Accounts</TabLink>
+        <TabLink>Extra docks</TabLink>
+      </Fragment>
+      <CustomizeTab
+        heading="Display, in three simple blocks"
+        text="Choose what shows in the main chat, add an events area above it like TikTok's own, and turn the activity line on or off."
+        points={[
+          "Main Chat: messages, gifts and support, follows and bans",
+          "Above the Main Chat: an events area, drag its bar to resize",
+          "Under the Chat: a calm activity line, one viewer at a time",
+        ]}
+        image={customize_display}
+        alt="Display, in three simple blocks"
+      />
+      <CustomizeTab
+        heading="Counters, platform by platform"
+        text="Hide a whole platform or pick the exact numbers you want. Each number belongs to a platform, so you never wonder where it comes from."
+        points={[
+          "Hide TikTok or YouTube in one click",
+          "Choose viewers, likes, followers, gifts and more",
+          "Only connected platforms show up in the dock",
+        ]}
+        image={customize_counters}
+        alt="Counters, platform by platform"
+      />
+      <CustomizeTab
+        heading="No passwords, no servers"
+        text="Type your TikTok username, or sign in with Google for YouTube. LiveBridge reconnects when OBS opens, and you can disconnect any time."
+        points={[
+          "TikTok: just your username",
+          "YouTube: Google sign-in, read-only access",
+          "Everything stays on your computer",
+        ]}
+        image={customize_accounts}
+        alt="No passwords, no servers"
+      />
+      <CustomizeTab
+        heading="Extra docks for your layout"
+        text="Add LiveBridge Gifts and LiveBridge Events from the Docks menu of OBS and place them anywhere. Nothing is taken away from the main chat."
+        points={[
+          "LiveBridge Gifts: gifts, Super Chats, new members",
+          "LiveBridge Events: follows, shares, subscribers, bans",
+          "Place them wherever you want in OBS",
+        ]}
+        image={customize_docks}
+        alt="Extra docks for your layout"
+      />
+    </Tabs>
+  </Section>
+  <Section id="privacy" paddingTop="none">
+    <ContentWrapper variant="sticky-content">
+      <Eyebrow>PRIVACY FIRST</Eyebrow>
+      <Heading maxWidth={14}>Runs on your computer. Period.</Heading>
+      <Paragraph maxWidth={40}
+        >There is no LiveBridge server, no account and no analytics. Your chat
+        never leaves your PC.</Paragraph
+      >
+      <ButtonWrapper>
+        <Button element="link" href="/privacy" emphasis="secondary"
+          >Read the Privacy Policy</Button
+        >
+      </ButtonWrapper>
+      <Grid class="gap-2" slot="column2">
+        <Card
+          icon={ph_desktop}
+          heading="Local only"
+          text="The helper service listens only on your own computer. Nobody on your network can reach it."
+        />
+        <Card
+          icon={ph_cloud_slash}
+          heading="Zero accounts, zero servers"
+          text="We never receive your chat, your tokens or your data. No trackers, no ads."
+        />
+        <Card
+          icon={ph_eye}
+          heading="Read-only"
+          text="On YouTube the app can only read. It never posts, deletes or changes anything."
+        />
+      </Grid>
+    </ContentWrapper>
+  </Section>
+  <Section id="faq">
+    <ContentWrapper variant="sticky-content">
+      <Eyebrow>FAQ</Eyebrow>
+      <Heading maxWidth={12}>Questions, answered.</Heading>
+      <Paragraph maxWidth={28}>Anything else? Ask us on Discord.</Paragraph>
+      <ButtonWrapper>
+        <Button element="link" href={DISCORD_URL} icon={discord2}
+          >Ask on Discord</Button
+        >
+      </ButtonWrapper>
+      <Accordion slot="column2" openFirst={true}>
+        <AccordionItem heading="Which platforms are supported?">
+          <Paragraph
+            >TikTok LIVE and YouTube Live. Twitch and Kick are planned, but not
+            available yet.</Paragraph
+          >
+        </AccordionItem>
+        <AccordionItem heading="Which systems does it run on?">
+          <Paragraph
+            >Windows with OBS Studio. The installer finds your OBS folder and
+            lets you confirm it before installing anything.</Paragraph
+          >
+        </AccordionItem>
+        <AccordionItem heading="How do I get it?">
+          <Paragraph
+            >LiveBridge is in early access. Join our Discord, request access,
+            and we send you the installer.</Paragraph
+          >
+        </AccordionItem>
+        <AccordionItem heading="Windows says the app is unknown. Is it safe?">
+          <Paragraph
+            >The installer is not code-signed yet, so Windows SmartScreen may
+            warn you. Choose “More info” and then “Run anyway”. The plugin only
+            runs inside OBS and only talks to TikTok and Google.</Paragraph
+          >
+        </AccordionItem>
+        <AccordionItem heading="Does it send my chat anywhere?">
+          <Paragraph
+            >No. Everything stays on your computer. There is no LiveBridge
+            server, no account and no analytics.</Paragraph
+          >
+        </AccordionItem>
+        <AccordionItem heading="Can it moderate my chat?">
+          <Paragraph
+            >Not yet. It shows what happens, for example YouTube bans and
+            timeouts, but it does not act on your behalf.</Paragraph
+          >
+        </AccordionItem>
+        <AccordionItem heading="Why does TikTok show more than LiveBridge?">
+          <Paragraph
+            >TikTok does not offer an official live API. LiveBridge reads the
+            public data of your live, so some app-only items, like some emoji
+            codes, can look different.</Paragraph
+          >
+        </AccordionItem>
+      </Accordion>
+    </ContentWrapper>
+  </Section>
+  <Section id="join" paddingTop="none" paddingBottom="small">
+    <ContentWrapper variant="card">
+      <Eyebrow>EARLY ACCESS</Eyebrow>
+      <Heading class="heading-accent" maxWidth={14}
+        >One place for <strong>your whole live</strong>.</Heading
+      >
+      <Paragraph maxWidth={36}
+        >Join our Discord, request access and get LiveBridge before everyone
+        else.</Paragraph
+      >
+      <ButtonWrapper>
+        <Button element="link" href={DISCORD_URL} icon={discord2}
+          >Request early access</Button
+        >
+      </ButtonWrapper>
+      <GradientBackground slot="column2" />
+    </ContentWrapper>
+  </Section>
+</Layout>

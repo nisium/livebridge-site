@@ -1,9 +1,47 @@
-# LiveBridge Site
+<p align="center">
+  <img src=".github/assets/banner.png" alt="Lumos For Astro" width="720">
+</p>
 
-Public site for LiveBridge (home, Privacy Policy, Terms), built with Astro and published on GitHub Pages.
-The app itself lives in a separate, private project.
+<p align="center">
+  <a href="https://www.npmjs.com/package/create-lumos"><img alt="npm version" src="https://img.shields.io/npm/v/create-lumos?labelColor=1E1E1E&color=C6FB50"></a>
+  <a href="LICENSE"><img alt="license" src="https://img.shields.io/npm/l/create-lumos?labelColor=1E1E1E&color=C6FB50"></a>
+  <a href="https://github.com/lumosframework/lumos-for-astro/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/lumosframework/lumos-for-astro/actions/workflows/ci.yml/badge.svg"></a>
+</p>
 
-- `npm install`, then `npm run dev` to work on it, `npm run build` to check it.
-- Every push to `main` is built and published by `.github/workflows/deploy.yml`.
-- Pages: `src/pages/`. Shared header and footer: `src/layouts/Base.astro`. Styles: `src/styles/global.css`.
-- Screenshots: `src/assets/` (optimized to WebP at build). Logo and platform icons: `public/brand/`.
+A component and styling framework for building Astro sites, designed around
+efficiency, scalability and accessibility.
+
+Documentation lives at **[lumosframework.com](https://lumosframework.com)**.
+
+## Getting started
+
+```sh
+npm create lumos@latest my-site
+```
+
+That scaffolds a new site from this repository and installs its dependencies
+with whichever package manager you ran it with. Then:
+
+```sh
+cd my-site
+npm run dev
+```
+
+| Script            | What it does                      |
+| ----------------- | --------------------------------- |
+| `npm run dev`     | Starts the dev server             |
+| `npm run build`   | Builds the site to `dist/`        |
+| `npm run preview` | Serves the built site             |
+| `npm run check`   | Type-checks every `.astro` file   |
+| `npm run format`  | Formats the project with Prettier |
+
+Node 22.19 or newer is required.
+
+## Documentation
+
+Component reference, styling guides and examples are at
+[lumosframework.com](https://lumosframework.com).
+
+## License
+
+[MIT](LICENSE)

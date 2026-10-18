@@ -1,44 +1,125 @@
 ---
-import Base from "../layouts/Base.astro";
-const base = import.meta.env.BASE_URL;
+import Layout from "@/layouts/BaseLayout.astro";
+import Section from "@/components/wrapper/Section.astro";
+import ContentWrapper from "@/components/wrapper/ContentWrapper.astro";
+import Eyebrow from "@/components/typography/Eyebrow.astro";
+import Heading from "@/components/typography/Heading.astro";
+import RichText from "@/components/typography/RichText.astro";
 ---
-<Base title="LiveBridge Privacy Policy" description="What LiveBridge does and does not do with your data.">
-<main class="doc narrow">
-<h1>Privacy Policy</h1>
-<p class="lead">Last updated: 18 October 2026</p>
-<div class="box"><strong>In short:</strong> LiveBridge runs only on your computer. We have no servers, we do not collect your data, and nothing you do in LiveBridge is sent to us or to anyone other than TikTok and Google, which you connect to yourself.</div>
 
-<h2>Who we are</h2>
-<p>LiveBridge ("the app") is an OBS Studio plugin made by NLG. Contact: <a href="https://github.com/nisium/livebridge-site/issues">GitHub Issues</a>.</p>
+<Layout
+  theme="dark"
+  title="Privacy Policy"
+  description="What LiveBridge does and does not do with your data."
+>
+  <!-- document -->
+  <Section paddingTop="medium" paddingBottom="large">
+    <ContentWrapper>
+      <Eyebrow>Last updated: 18 October 2026</Eyebrow>
+      <Heading tag="h1" variant="h1" maxWidth={17}>Privacy Policy</Heading>
+      <RichText maxWidth={60}>
+        <p>
+          <strong>In short:</strong> LiveBridge runs only on your computer. We have
+          no servers, we do not collect your data, and nothing you do in LiveBridge
+          is sent to us or to anyone other than TikTok and Google, which you connect
+          to yourself.
+        </p>
 
-<h2>What the app accesses</h2>
-<ul>
-<li><strong>YouTube (if you connect it).</strong> With your consent through Google sign-in, the app reads your own live broadcast chat messages, Super Chats, new members, moderation events and your channel's live and subscriber counts, through the YouTube Data API. The only permission requested is <code>https://www.googleapis.com/auth/youtube.readonly</code> (read only).</li>
-<li><strong>TikTok (if you connect it).</strong> You type a TikTok username. The app reads the public data of that live (chat, gifts, follows, shares, counters), like a viewer would. No TikTok password is requested or stored.</li>
-<li><strong>Settings.</strong> Your choices (username, which counters to show, layout) are stored locally by OBS on your computer.</li>
-</ul>
+        <h2>Who we are</h2>
+        <p>
+          LiveBridge ("the app") is an OBS Studio plugin made by NLG. Contact: <a
+            href="https://github.com/nisium/livebridge-site/issues"
+            >GitHub Issues</a
+          >.
+        </p>
 
-<h2>Where data goes</h2>
-<ul>
-<li>Chat messages, events and counters are shown in the app and kept in memory while it runs. They are not written to disk. The only other files are a cache of TikTok's public gift list (names and pictures of gifts, no personal data) and an optional debug log that is off by default and that you enable yourself.</li>
-<li>A helper service started by the app listens only on <code>127.0.0.1</code> (your own computer). It is not reachable from the network.</li>
-<li>The app contacts only <strong>TikTok</strong> and <strong>Google/YouTube</strong> servers, to get the data above. It has no analytics, no advertising and no telemetry.</li>
-<li>We do not receive, store, share or sell any of your data, and no human at NLG can read it.</li>
-</ul>
+        <h2>What the app accesses</h2>
+        <ul>
+          <li>
+            <strong>YouTube (if you connect it).</strong> With your consent through
+            Google sign-in, the app reads your own live broadcast chat messages, Super
+            Chats, new members, moderation events and your channel's live and subscriber
+            counts, through the YouTube Data API. The only permission requested is
+            <code>https://www.googleapis.com/auth/youtube.readonly</code> (read only).
+          </li>
+          <li>
+            <strong>TikTok (if you connect it).</strong> You type a TikTok username.
+            The app reads the public data of that live (chat, gifts, follows, shares,
+            counters), like a viewer would. No TikTok password is requested or stored.
+          </li>
+          <li>
+            <strong>Settings.</strong> Your choices (username, which counters to show,
+            layout) are stored locally by OBS on your computer.
+          </li>
+        </ul>
 
-<h2>Google sign-in token</h2>
-<p>After you sign in with Google, the app keeps a refresh token in a file in your user profile (<code>%APPDATA%\LiveBridge</code> on Windows) so you do not have to sign in again. It never leaves your computer. When you press <em>Disconnect</em> the app revokes the permission at Google and deletes the file. You can also remove LiveBridge any time at <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>.</p>
+        <h2>Where data goes</h2>
+        <ul>
+          <li>
+            Chat messages, events and counters are shown in the app and kept in
+            memory while it runs. They are not written to disk. The only other
+            files are a cache of TikTok's public gift list (names and pictures
+            of gifts, no personal data) and an optional debug log that is off by
+            default and that you enable yourself.
+          </li>
+          <li>
+            A helper service started by the app listens only on <code
+              >127.0.0.1</code
+            > (your own computer). It is not reachable from the network.
+          </li>
+          <li>
+            The app contacts only <strong>TikTok</strong> and <strong
+              >Google/YouTube</strong
+            > servers, to get the data above. It has no analytics, no advertising
+            and no telemetry.
+          </li>
+          <li>
+            We do not receive, store, share or sell any of your data, and no
+            human at NLG can read it.
+          </li>
+        </ul>
 
-<h2>Google API Services User Data Policy</h2>
-<p>LiveBridge's use and transfer to any other app of information received from Google APIs will adhere to the <a href="https://developers.google.com/terms/api-services-user-data-policy#additional_requirements_for_specific_api_scopes">Google API Services User Data Policy</a>, including the Limited Use requirements. Data from Google APIs is used only to show your own live chat and counters to you inside OBS. It is not used for advertising, not transferred to third parties and not used to train any model.</p>
+        <h2>Google sign-in token</h2>
+        <p>
+          After you sign in with Google, the app keeps a refresh token in a file
+          in your user profile (<code>%APPDATA%\LiveBridge</code> on Windows) so you
+          do not have to sign in again. It never leaves your computer. When you press
+          <em>Disconnect</em> the app revokes the permission at Google and deletes
+          the file. You can also remove LiveBridge any time at <a
+            href="https://myaccount.google.com/permissions"
+            >myaccount.google.com/permissions</a
+          >.
+        </p>
 
-<h2>Other people's messages</h2>
-<p>Chat messages come from your viewers. The app shows them to you and does not keep them after you close OBS.</p>
+        <h2>Google API Services User Data Policy</h2>
+        <p>
+          LiveBridge's use and transfer to any other app of information received
+          from Google APIs will adhere to the <a
+            href="https://developers.google.com/terms/api-services-user-data-policy#additional_requirements_for_specific_api_scopes"
+            >Google API Services User Data Policy</a
+          >, including the Limited Use requirements. Data from Google APIs is
+          used only to show your own live chat and counters to you inside OBS.
+          It is not used for advertising, not transferred to third parties and
+          not used to train any model.
+        </p>
 
-<h2>Children</h2>
-<p>The app is a tool for streamers and is not directed to children.</p>
+        <h2>Other people's messages</h2>
+        <p>
+          Chat messages come from your viewers. The app shows them to you and
+          does not keep them after you close OBS.
+        </p>
 
-<h2>Changes and contact</h2>
-<p>If this policy changes, the date above changes with it. Questions or requests: <a href="https://github.com/nisium/livebridge-site/issues">GitHub Issues</a>.</p>
-</main>
-</Base>
+        <h2>Children</h2>
+        <p>The app is a tool for streamers and is not directed to children.</p>
+
+        <h2>Changes and contact</h2>
+        <p>
+          If this policy changes, the date above changes with it. Questions or
+          requests: <a href="https://github.com/nisium/livebridge-site/issues"
+            >GitHub Issues</a
+          >.
+        </p>
+      </RichText>
+    </ContentWrapper>
+  </Section>
+</Layout>
