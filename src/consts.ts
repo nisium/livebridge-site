@@ -10,5 +10,5 @@ export const SITE_LOCALE = "en-US";
 /** Routes excluded from search and the sitemap. Surrounding slashes are ignored. */
 export const NOINDEX_ROUTES: string[] = ["/404"];
 
-/** Where early access is requested. Replace with the invite link of the Discord server. */
+/** Where early access is requested: the (permanent) invite link of the LiveBridge Discord server. */
 export const DISCORD_URL = "https://discord.gg/spDSfzBEfP";
