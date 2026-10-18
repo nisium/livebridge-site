@@ -39,6 +39,7 @@ import ph_eye from "@/assets/icons/ph-eye-fill.svg";
 import Accordion from "@/components/interactive/Accordion.astro";
 import AccordionItem from "@/components/interactive/AccordionItem.astro";
 import latest from "@/data/latest.json";
+import { url } from "@/utils/url.ts";
 ---
 
 <Layout theme="dark" overlap={true}>
@@ -202,7 +203,7 @@ import latest from "@/data/latest.json";
         never leaves your PC.</Paragraph
       >
       <ButtonWrapper>
-        <Button element="link" href="/privacy" emphasis="secondary"
+        <Button element="link" href={url("/privacy")} emphasis="secondary"
           >Read the Privacy Policy</Button
         >
       </ButtonWrapper>

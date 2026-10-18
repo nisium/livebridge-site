@@ -14,13 +14,14 @@ interface Props {
 
 const { render = true, overlap = false } = Astro.props;
 import discord from "@/assets/icons/discord.svg";
+import { url } from "@/utils/url.ts";
 ---
 
 {
   render && (
     <header class:list={["nav_wrap", overlap && "overlap"]}>
       <div class="nav_inner">
-        <a class="nav_logo" href="/" aria-label={SITE_NAME}>
+        <a class="nav_logo" href={url("/")} aria-label={SITE_NAME}>
           <Icon src={logo} variant="full-width" />
         </a>
         <button
@@ -36,9 +37,9 @@ import discord from "@/assets/icons/discord.svg";
           <div class="nav_menu_inner" data-lenis-prevent>
             <ul class="nav_links">
               <li class="nav_indicator" aria-hidden="true" />
-              <NavLink href="/#features">What it does</NavLink>
-              <NavLink href="/#customize">Make it yours</NavLink>
-              <NavLink href="/#faq">FAQ</NavLink>
+              <NavLink href={url("/#features")}>What it does</NavLink>
+              <NavLink href={url("/#customize")}>Make it yours</NavLink>
+              <NavLink href={url("/#faq")}>FAQ</NavLink>
             </ul>
             <div class="nav_cta">
               <Button element="link" href={DISCORD_URL} icon={discord}>

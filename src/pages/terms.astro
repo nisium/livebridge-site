@@ -5,6 +5,7 @@ import ContentWrapper from "@/components/wrapper/ContentWrapper.astro";
 import Eyebrow from "@/components/typography/Eyebrow.astro";
 import Heading from "@/components/typography/Heading.astro";
 import RichText from "@/components/typography/RichText.astro";
+import { url } from "@/utils/url.ts";
 ---
 
 <Layout
@@ -38,8 +39,8 @@ import RichText from "@/components/typography/RichText.astro";
           </li>
           <li>
             To stop using LiveBridge, press Disconnect in Settings and uninstall
-            the plugin. See the <a href="/privacy">Privacy Policy</a> for what is
-            stored.
+            the plugin. See the <a href={url("/privacy")}>Privacy Policy</a> for what
+            is stored.
           </li>
         </ul>
       </RichText>

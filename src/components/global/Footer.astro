@@ -15,16 +15,16 @@ const groups = [
   {
     title: "Product",
     links: [
-      { label: "What it does", href: "/#features" },
-      { label: "Make it yours", href: "/#customize" },
+      { label: "What it does", href: url("/#features") },
+      { label: "Make it yours", href: url("/#customize") },
       { label: "Request early access", href: DISCORD_URL },
     ],
   },
   {
     title: "Legal",
     links: [
-      { label: "Privacy Policy", href: "/privacy" },
-      { label: "Terms of Use", href: "/terms" },
+      { label: "Privacy Policy", href: url("/privacy") },
+      { label: "Terms of Use", href: url("/terms") },
     ],
   },
   {
@@ -37,6 +37,7 @@ const groups = [
     ],
   },
 ];
+import { url } from "@/utils/url.ts";
 ---
 
 {
@@ -46,7 +47,7 @@ const groups = [
       <div class="footer_inner">
         <div class="footer_top">
           <div class="footer_brand">
-            <a class="footer_logo" href="/" aria-label={SITE_NAME}>
+            <a class="footer_logo" href={url("/")} aria-label={SITE_NAME}>
               <Icon src={logo} variant="full-width" />
             </a>
             <p class="footer_tagline text-style-small">
