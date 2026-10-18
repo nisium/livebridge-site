@@ -10,9 +10,5 @@ export const SITE_LOCALE = "en-US";
 /** Routes excluded from search and the sitemap. Surrounding slashes are ignored. */
 export const NOINDEX_ROUTES: string[] = ["/404"];
 
-/** Where the Windows installer is downloaded from. */
-export const DOWNLOAD_URL =
-  "https://github.com/nisium/livebridge-site/releases/latest";
-
 /** Where early access is requested. Replace with the invite link of the Discord server. */
 export const DISCORD_URL = "https://discord.gg/spDSfzBEfP";
