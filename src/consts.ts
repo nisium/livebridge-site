@@ -15,4 +15,4 @@ export const DOWNLOAD_URL =
   "https://github.com/nisium/livebridge-site/releases/latest";
 
 /** Where early access is requested. Replace with the invite link of the Discord server. */
-export const DISCORD_URL = "https://discord.com";
+export const DISCORD_URL = "https://discord.gg/spDSfzBEfP";
