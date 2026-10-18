@@ -1,21 +1,82 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>LiveBridge</title><meta name="description" content="One private timeline of chat, events and gifts for TikTok LIVE and YouTube Live, as docks inside OBS Studio."><link rel="stylesheet" href="style.css"></head><body><header class="nav"><strong>LiveBridge</strong><a href="index.html">Home</a><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms</a><a href="https://github.com/nisium/livebridge-site">GitHub</a></header><main>
-<h1>LiveBridge</h1>
-<p class="lead">One private timeline of chat, events and gifts for TikTok LIVE and YouTube Live, as docks inside OBS Studio.</p>
-<img src="site-img/dock.png" alt="The LiveBridge dock inside OBS Studio">
-<h2>What it does</h2>
-<ul>
-<li>Shows chat, gifts, follows, shares, Super Chats and members in a single list, with the platform's own pictures and stickers.</li>
-<li>Live counters per platform: viewers, likes, new followers or subscribers, gifts, Super Chats, members.</li>
-<li>Separate docks for gifts and events, an events area above the chat, and an activity line under it.</li>
-<li>Works with TikTok LIVE and YouTube Live. Twitch and Kick are planned.</li>
-</ul>
-<h2>Private by design</h2>
-<div class="card">
-<p>LiveBridge has no server and no account. It runs entirely on your computer, inside OBS. The small helper service it starts listens only on <code>127.0.0.1</code>, so nothing else on your network can reach it. We do not collect, receive or sell any data. <a href="privacy.html">Read the Privacy Policy</a>.</p>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark"><title>LiveBridge for OBS Studio</title><meta name="description" content="One private timeline of chat, events and gifts for TikTok LIVE and YouTube Live, as docks inside OBS Studio."><link rel="stylesheet" href="style.css"></head><body><nav class="top"><div class="wrap"><a class="brand" href="index.html"><img src="site-img/logo.svg" alt="LiveBridge" width="100" height="21"></a><a class="hide" href="index.html#features">Features</a><a class="hide" href="index.html#custom">Customize</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></div></nav>
+<header class="hero"><div class="wrap">
+<span class="pill"><i></i> Early access · Windows installer for OBS Studio</span>
+<h1>Your whole live, in <em>one timeline</em>.</h1>
+<p class="lead">Chat, gifts, follows, Super Chats and live counters from TikTok LIVE and YouTube Live, side by side, as docks inside OBS Studio. Private by design: nothing leaves your computer.</p>
+<div class="cta"><a class="btn primary" href="#features">See what it does</a><a class="btn ghost" href="privacy.html">How your data is handled</a></div>
+<div class="platforms"><img src="site-img/tiktok.svg" alt=""><img src="site-img/youtube.svg" alt=""><span>TikTok LIVE and YouTube Live today · Twitch and Kick later</span></div>
+<div class="shots">
+<div class="frame"><img src="site-img/gifts.png" alt="Gifts dock with real TikTok gift pictures"></div>
+<div class="frame big"><img src="site-img/dock.png" alt="The LiveBridge dock in OBS Studio"></div>
+<div class="frame"><img src="site-img/events.png" alt="Events dock"></div>
 </div>
-<h2>Connecting YouTube</h2>
-<p>In Settings &gt; Accounts, press <em>Connect</em> and sign in with Google in your browser. LiveBridge asks for one permission only: <strong>read-only access to your YouTube account</strong> (<code>youtube.readonly</code>), used to read your own live chat and your channel counters. It never posts, deletes or changes anything. You can disconnect at any time from the same screen, which also revokes the permission at Google.</p>
-<h2>Connecting TikTok</h2>
-<p>Type your TikTok username and press Connect. No password is needed: LiveBridge reads the same public data as a viewer of your live.</p>
-<img src="site-img/settings.png" alt="LiveBridge settings">
-</main><footer>LiveBridge by NLG. Not affiliated with TikTok, YouTube, Google or OBS Project. Questions: <a href="https://github.com/nisium/livebridge-site/issues">GitHub Issues</a>.</footer></body></html>
+<p class="cap">Screenshots use demo data (a test run of the app). Gift and sticker pictures are the real ones from TikTok.</p>
+</div></header>
+
+<section id="features"><div class="wrap">
+<span class="kicker">What it does</span>
+<h2>Everything a streamer needs to see, in one place.</h2>
+<p class="sub">Stop jumping between the TikTok app, YouTube Studio and three browser tabs.</p>
+<div class="grid">
+<div class="card"><div class="ico">💬</div><h3>One private timeline</h3><p>Chat from every connected platform in a single list, with badges, emotes and stickers as viewers see them.</p></div>
+<div class="card"><div class="ico">🎁</div><h3>Real gifts</h3><p>Gifts show their own picture, name and count. Small gifts and big ones (500+ diamonds) have their own look. Super Chats and new members too.</p></div>
+<div class="card"><div class="ico">📊</div><h3>Live counters</h3><p>Viewers, likes, new followers, diamonds, Super Chats and members, grouped by platform and updated as they change.</p></div>
+<div class="card"><div class="ico">👋</div><h3>Follows, shares, bans</h3><p>New followers and subscribers, shares, and YouTube bans and timeouts, as quiet little events in the chat.</p></div>
+<div class="card"><div class="ico">⚡</div><h3>Activity line</h3><p>Under the chat, one line shows who just joined, followed, shared or liked, rotating calmly one at a time.</p></div>
+<div class="card"><div class="ico">🧩</div><h3>Docks that fit your layout</h3><p>Use the main dock alone, or add separate Gifts and Events docks and place them anywhere in OBS.</p></div>
+</div></div></section>
+
+<section class="alt" id="custom"><div class="wrap">
+<span class="kicker">Customize</span>
+<h2>Show what you want. Hide what you don't.</h2>
+<p class="sub">Every part of the chat can be turned on or off from a clear Settings screen. Nothing is taken away unless you say so.</p>
+<div class="split">
+<div><div class="frame"><img src="site-img/display.png" alt="Display settings"></div></div>
+<div><h3 style="font-size:24px">Display, in three simple blocks</h3>
+<ul>
+<li><b>Main Chat.</b> Choose between chat messages, gifts and support, and follows, shares and bans.</li>
+<li><b>Above the Main Chat.</b> An optional events area like TikTok's own: show all events, only follows and shares, or only gifts and members. Drag the bar to make it bigger.</li>
+<li><b>Under the Chat.</b> The activity line, on or off.</li>
+<li><b>Test the whole chat.</b> One button runs a short demo for the platforms you connected, so you can check your layout before going live.</li>
+</ul></div></div>
+<div class="split rev" style="margin-top:56px">
+<div><h3 style="font-size:24px">Counters, platform by platform</h3>
+<ul>
+<li><b>Hide a whole platform</b> or pick the exact numbers you want.</li>
+<li><b>Each number belongs to a platform</b>, so you never wonder where it comes from.</li>
+<li><b>Only connected platforms</b> appear at the top and bottom of the dock.</li>
+</ul></div>
+<div><div class="frame"><img src="site-img/counters.png" alt="Counter settings"></div></div></div>
+</div></section>
+
+<section><div class="wrap">
+<span class="kicker">Connecting</span>
+<h2>No passwords. No servers. Two minutes.</h2>
+<div class="two" style="margin-top:28px">
+<div class="card"><h3><img src="site-img/tiktok.svg" alt="" width="18" height="18" style="vertical-align:-3px;border-radius:4px"> TikTok</h3><p>Type your username and press Connect. LiveBridge reads the same public data a viewer of your live sees. No TikTok password is ever asked.</p></div>
+<div class="card"><h3><img src="site-img/youtube.svg" alt="" width="18" height="18" style="vertical-align:-3px;border-radius:4px"> YouTube</h3><p>Sign in with Google in your browser. Only one permission is requested: read-only access to your YouTube account, to read your own live chat and counters. You can disconnect, and revoke it at Google, from Settings.</p></div>
+</div></div></section>
+
+<section class="alt"><div class="wrap">
+<span class="kicker">Privacy</span>
+<h2>Runs on your computer. Period.</h2>
+<p class="sub">There is no LiveBridge server, no account and no analytics.</p>
+<div class="priv">
+<div class="card"><div class="big">127.0.0.1</div><p>The helper service listens only on your own computer. Nobody on your network can reach it.</p></div>
+<div class="card"><div class="big">0</div><p>Accounts, servers, trackers or ads. We never receive your chat, your tokens or your data.</p></div>
+<div class="card"><div class="big">Read-only</div><p>On YouTube the app can only read. It never posts, deletes or changes anything.</p></div>
+</div>
+<p style="margin-top:22px"><a href="privacy.html">Read the full Privacy Policy →</a></p>
+</div></section>
+
+<section><div class="narrow faq">
+<span class="kicker">Questions</span>
+<h2>FAQ</h2>
+<details><summary>Which platforms are supported?</summary><p>TikTok LIVE and YouTube Live. Twitch and Kick are planned but not available yet.</p></details>
+<details><summary>Which systems?</summary><p>The installer is for Windows and OBS Studio. It finds your OBS folder and lets you confirm or change it before installing anything.</p></details>
+<details><summary>Windows says the app is unknown. Is it safe?</summary><p>The installer is not code-signed yet, so Windows SmartScreen may warn you. Choose "More info" then "Run anyway". The plugin only runs inside OBS and talks only to TikTok and Google.</p></details>
+<details><summary>Does it send my chat anywhere?</summary><p>No. Everything stays on your computer. See the <a href="privacy.html">Privacy Policy</a>.</p></details>
+<details><summary>Can it moderate my chat?</summary><p>Not yet. It shows what happens (for example YouTube bans and timeouts) but it does not act on your behalf.</p></details>
+<details><summary>Why does TikTok show fewer details than the TikTok app?</summary><p>TikTok does not offer an official live API. LiveBridge reads the public data of your live, so some app-only items (for example some emoji codes) can look different.</p></details>
+</div></section>
+<footer><img src="site-img/logo.svg" alt="LiveBridge" width="80" height="17" style="opacity:.7;margin-bottom:10px"><br>by NLG · Not affiliated with TikTok, YouTube, Google or OBS Project. All names and logos belong to their owners.<br><a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms</a> · <a href="https://github.com/nisium/livebridge-site/issues">Contact</a></footer></body></html>
