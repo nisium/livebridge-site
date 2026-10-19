@@ -6,7 +6,9 @@ import { isNoindexRoute } from "./src/utils/seo.ts";
 
 export default defineConfig({
   site: SITE_URL,
-  base: "/livebridge-site",
+  // The published site lives under /livebridge-site/ (GitHub Pages builds it: GITHUB_ACTIONS is set there). On this computer, and in
+  // Stacki, the site is served from the root, so the page is found at http://127.0.0.1:4321/.
+  base: process.env.GITHUB_ACTIONS ? "/livebridge-site" : "/",
   integrations: [
     sitemap({
       filter: (page) => !isNoindexRoute(new URL(page).pathname),
