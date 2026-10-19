@@ -15,14 +15,16 @@ import RichText from "@/components/typography/RichText.astro";
   <!-- document -->
   <Section paddingTop="medium" paddingBottom="large">
     <ContentWrapper>
-      <Eyebrow>Last updated: 18 October 2026</Eyebrow>
+      <Eyebrow>Last updated: 19 October 2026</Eyebrow>
       <Heading tag="h1" variant="h1" maxWidth={17}>Privacy Policy</Heading>
       <RichText maxWidth={60}>
         <p>
-          <strong>In short:</strong> LiveBridge runs only on your computer. We have
-          no servers, we do not collect your data, and nothing you do in LiveBridge
-          is sent to us or to anyone other than TikTok and Google, which you connect
-          to yourself.
+          <strong>In short:</strong> LiveBridge runs on your computer. Your chat,
+          gifts and Google data stay there and are never sent to us. The app
+          contacts TikTok and Google, which you connect to yourself, and the
+          LiveBridge key service, which only receives your access key, a random
+          id of your computer and the version number, to check that your key is
+          valid and to look for updates.
         </p>
 
         <h2>Who we are</h2>
@@ -68,14 +70,21 @@ import RichText from "@/components/typography/RichText.astro";
             > (your own computer). It is not reachable from the network.
           </li>
           <li>
-            The app contacts only <strong>TikTok</strong> and <strong
+            The app contacts <strong>TikTok</strong> and <strong
               >Google/YouTube</strong
-            > servers, to get the data above. It has no analytics, no advertising
+            > servers, to get the data above, and the <strong
+              >LiveBridge key service</strong
+            > (hosted on Cloudflare), to check your key and look for updates. New
+            versions are downloaded from GitHub. It has no analytics, no advertising
             and no telemetry.
           </li>
           <li>
-            We do not receive, store, share or sell any of your data, and no
-            human at NLG can read it.
+            We do not receive, store, share or sell your chat, gifts or Google
+            data, and no human at NLG can read it. The key service keeps only
+            your access key, the name we gave it, a random id of your computer,
+            the version number and the time of the last check. Like any web
+            service, it sees your IP address while it answers, and we do not
+            keep it.
           </li>
         </ul>
 

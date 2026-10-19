@@ -12,3 +12,6 @@ export const NOINDEX_ROUTES: string[] = ["/404"];
 
 /** Where early access is requested: the (permanent) invite link of the LiveBridge Discord server. */
 export const DISCORD_URL = "https://discord.gg/spDSfzBEfP";
+
+/** The LiveBridge key service: the download form of the home page asks it for the installer. */
+export const KEY_SERVICE_URL = "https://livebridge-keys.dionisiegaina.workers.dev";

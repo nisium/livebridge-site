@@ -1,0 +1,111 @@
+---
+import Input from "@/components/form/Input.astro";
+import Button from "@/components/Button.astro";
+import Paragraph from "@/components/typography/Paragraph.astro";
+
+interface Props {
+  /** Set to `false` to omit the component. */
+  render?: boolean;
+  /** Address of the LiveBridge key service. */
+  service: string;
+}
+
+const { render = true, service } = Astro.props;
+---
+
+{
+  render && (
+    <div class="key-download" data-service={service}>
+      <form class="key-download_form" novalidate>
+        <Input
+          label="Your key"
+          labelHidden={true}
+          name="key"
+          placeholder="LB-XXXX-XXXX-XXXX-XXXX"
+          required={true}
+          autocomplete="off"
+          spellcheck="false"
+          maxlength="32"
+        />
+        <Button type="submit">Download for Windows</Button>
+      </form>
+      <Paragraph
+        variant="xsmall"
+        class="key-download_status color-faded"
+        role="status"
+        aria-live="polite"
+      >
+        The key works on one computer.
+      </Paragraph>
+    </div>
+  )
+}
+
+<style>
+  .key-download {
+    display: grid;
+    gap: 0.75rem;
+    justify-items: center;
+    width: 100%;
+    max-width: 28rem;
+    margin-inline: auto;
+    margin-top: 1.5rem;
+  }
+  .key-download_form {
+    display: grid;
+    gap: 0.75rem;
+    width: 100%;
+    justify-items: center;
+  }
+  .key-download_form :global(input) {
+    text-align: center;
+    letter-spacing: 0.06em;
+  }
+  .key-download[data-state="error"] .key-download_status {
+    color: #ff8a8a;
+  }
+  .key-download[data-state="ok"] .key-download_status {
+    color: #7be0a0;
+  }
+</style>
+
+<script>
+  for (const box of document.querySelectorAll<HTMLElement>(".key-download")) {
+    const form = box.querySelector<HTMLFormElement>(".key-download_form");
+    const status = box.querySelector<HTMLElement>(".key-download_status");
+    const button = form?.querySelector<HTMLButtonElement>("button");
+    const service = box.dataset.service;
+    if (!form || !status || !button || !service) continue;
+
+    const say = (text: string, state: "idle" | "ok" | "error") => {
+      status.textContent = text;
+      box.dataset.state = state;
+    };
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const key = new FormData(form).get("key")?.toString().trim() ?? "";
+      if (!key) return say("Enter the key you received.", "error");
+      button.disabled = true;
+      say("Checking your key...", "idle");
+      try {
+        const answer = await fetch(`${service}/api/download`, {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({ key }),
+        });
+        const data = await answer.json();
+        if (!data.ok) return say(data.message ?? "That did not work.", "error");
+        say(
+          `Version ${data.version} (${data.sizeMb} MB): the download starts. Run it, then open OBS: LiveBridge activates by itself.`,
+          "ok",
+        );
+        window.location.href = data.url;
+      } catch {
+        say("Could not reach the key service. Try again in a moment.", "error");
+      } finally {
+        button.disabled = false;
+      }
+    });
+  }
+</script>
