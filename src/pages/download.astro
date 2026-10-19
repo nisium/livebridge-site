@@ -20,18 +20,18 @@ import { DISCORD_URL, KEY_SERVICE_URL } from "@/consts.ts";
   <Section paddingTop="large" paddingBottom="large">
     <ContentWrapper centered={true}>
       <Eyebrow>EARLY ACCESS</Eyebrow>
-      <Heading tag="h1" variant="h1" maxWidth={14}
+      <Heading tag="h1" variant="h1" maxWidth={10}
         >Download LiveBridge.</Heading
       >
-      <Paragraph maxWidth={30}
+      <Paragraph maxWidth={40}
         >Enter the key we gave you. After installing, open OBS and LiveBridge
         recognises it by itself.</Paragraph
       >
       <KeyDownload service={KEY_SERVICE_URL} />
-      <Paragraph variant="small" class="color-faded" maxWidth={30}
-        >No key yet? Join our Discord and request access.</Paragraph
+      <Paragraph variant="small" class="color-faded" maxWidth={40}
+        >No key yet?</Paragraph
       >
-      <ButtonWrapper>
+      <ButtonWrapper class="margin-top-2">
         <Button element="link" href={DISCORD_URL} emphasis="secondary" icon={discord}
           >Request early access</Button
         >
