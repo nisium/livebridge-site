@@ -1,0 +1,41 @@
+---
+import Layout from "@/layouts/BaseLayout.astro";
+import Section from "@/components/wrapper/Section.astro";
+import ContentWrapper from "@/components/wrapper/ContentWrapper.astro";
+import ButtonWrapper from "@/components/wrapper/ButtonWrapper.astro";
+import Eyebrow from "@/components/typography/Eyebrow.astro";
+import Heading from "@/components/typography/Heading.astro";
+import Paragraph from "@/components/typography/Paragraph.astro";
+import Button from "@/components/Button.astro";
+import KeyDownload from "@/components/content/KeyDownload.astro";
+import discord from "@/assets/icons/discord.svg";
+import { DISCORD_URL, KEY_SERVICE_URL } from "@/consts.ts";
+---
+
+<Layout
+  theme="dark"
+  title="Download"
+  description="Download LiveBridge for Windows with the key you received."
+>
+  <Section paddingTop="large" paddingBottom="large">
+    <ContentWrapper centered={true}>
+      <Eyebrow>EARLY ACCESS</Eyebrow>
+      <Heading tag="h1" variant="h1" maxWidth={14}
+        >Download LiveBridge.</Heading
+      >
+      <Paragraph maxWidth={30}
+        >Enter the key we gave you. After installing, open OBS and LiveBridge
+        recognises it by itself.</Paragraph
+      >
+      <KeyDownload service={KEY_SERVICE_URL} />
+      <Paragraph variant="small" class="color-faded" maxWidth={30}
+        >No key yet? Join our Discord and request access.</Paragraph
+      >
+      <ButtonWrapper>
+        <Button element="link" href={DISCORD_URL} emphasis="secondary" icon={discord}
+          >Request early access</Button
+        >
+      </ButtonWrapper>
+    </ContentWrapper>
+  </Section>
+</Layout>

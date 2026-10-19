@@ -7,8 +7,7 @@ import Heading from "@/components/typography/Heading.astro";
 import Paragraph from "@/components/typography/Paragraph.astro";
 import ButtonWrapper from "@/components/wrapper/ButtonWrapper.astro";
 import Button from "@/components/Button.astro";
-import { DISCORD_URL, KEY_SERVICE_URL } from "@/consts.ts";
-import KeyDownload from "@/components/content/KeyDownload.astro";
+import { DISCORD_URL } from "@/consts.ts";
 import HeroMockup from "@/components/content/HeroMockup.astro";
 import ph_chats from "@/assets/icons/ph-chats-fill.svg";
 import ph_gift from "@/assets/icons/ph-gift-fill.svg";
@@ -286,17 +285,6 @@ import { url } from "@/utils/url.ts";
           >
         </AccordionItem>
       </Accordion>
-    </ContentWrapper>
-  </Section>
-  <Section id="download" paddingTop="none">
-    <ContentWrapper centered={true}>
-      <Eyebrow>ALREADY HAVE A KEY?</Eyebrow>
-      <Heading maxWidth={14}>Download LiveBridge.</Heading>
-      <Paragraph maxWidth={30}
-        >Enter the key we gave you. After installing, open OBS and LiveBridge
-        recognises it by itself.</Paragraph
-      >
-      <KeyDownload service={KEY_SERVICE_URL} />
     </ContentWrapper>
   </Section>
   <Section id="join" paddingTop="none" paddingBottom="small">
